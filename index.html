@@ -21,9 +21,11 @@
   .intervals { display:flex; gap:6px; padding:10px 16px; overflow-x:auto; border-bottom:1px solid var(--line); -webkit-overflow-scrolling:touch; }
   .intervals button { flex:0 0 auto; appearance:none; border:1px solid var(--line); background:var(--panel); color:var(--muted); font-size:14px; font-weight:600; padding:8px 14px; border-radius:8px; cursor:pointer; min-width:48px; }
   .intervals button.active { background:var(--text); color:var(--bg); border-color:var(--text); }
-  #chart { position:relative; flex:1 1 auto; height:calc(100vh - 130px); height:calc(100dvh - 130px); min-height:420px; }
+  #chart { position:relative; flex:1 1 auto; height:calc(100vh - 210px); height:calc(100dvh - 210px); min-height:420px; }
   #chart .tradingview-widget-container { position:absolute; inset:0; }
   #chart .tradingview-widget-container__widget, #chart iframe { width:100% !important; height:100% !important; }
+  .pricestrip { height:78px; border-bottom:1px solid var(--line); overflow:hidden; }
+  .pricestrip .tradingview-widget-container, .pricestrip .tradingview-widget-container__widget { height:100%; width:100%; }
   #fallback { display:none; position:absolute; inset:0; align-items:center; justify-content:center; text-align:center; padding:24px; color:var(--muted); font-size:14px; line-height:1.5; }
   #fallback a { color:var(--tech); font-weight:600; }
 </style>
@@ -36,6 +38,23 @@
     <button class="tab" data-key="tech" role="tab"><span class="dot"></span>US Tech · Nasdaq 100</button>
   </div>
 </header>
+<div class="pricestrip">
+  <div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js" async>
+    {
+      "symbols": [
+        { "proName": "OANDA:XAUUSD", "title": "Gold · XAU/USD" },
+        { "proName": "OANDA:NAS100USD", "title": "US Tech · NAS100" }
+      ],
+      "colorTheme": "dark",
+      "isTransparent": true,
+      "showSymbolLogo": true,
+      "locale": "en"
+    }
+    </script>
+  </div>
+</div>
 <div class="intervals" id="intervals">
   <button data-i="1" class="active">1m</button>
   <button data-i="5">5m</button>
